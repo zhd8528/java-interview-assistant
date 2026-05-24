@@ -19,3 +19,31 @@
 ### 安装依赖
 ```bash
 pip install pandas chromadb openai streamlit
+```
+
+### 运行
+```bash
+# 命令行版
+python knowledge_bot_v2.py
+
+# Web 版
+streamlit run app.py
+```
+## 📸 效果演示
+
+![p1](C:\Users\Administrator\Desktop\git-dify-project\p1.png)
+
+![p2](C:\Users\Administrator\Desktop\git-dify-project\p2.png)
+
+![p3](C:\Users\Administrator\Desktop\git-dify-project\p3.png)
+## 📄 项目结构
+```
+├── knowledge_base.csv    # 知识库数据（297条）
+├── knowledge_bot_v2.py   # 命令行版主程序
+├── app.py                # Web 版主程序
+└── chroma_db/            # 向量索引（自动生成）
+```
+## 👤 作者
+- GitHub: @zhd8528
+## 📝 许可证
+- MIT
