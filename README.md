@@ -31,11 +31,11 @@ streamlit run app.py
 ```
 ## 📸 效果演示
 
-![p1](C:\Users\Administrator\Desktop\git-dify-project\p1.png)
+![p1](https://zhd-blog.oss-cn-beijing.aliyuncs.com/p1.png)
 
-![p2](C:\Users\Administrator\Desktop\git-dify-project\p2.png)
+![p2](https://zhd-blog.oss-cn-beijing.aliyuncs.com/p2.png)
 
-![p3](C:\Users\Administrator\Desktop\git-dify-project\p3.png)
+![p3](https://zhd-blog.oss-cn-beijing.aliyuncs.com/p3.png)
 ## 📄 项目结构
 ```
 ├── knowledge_base.csv    # 知识库数据（297条）
