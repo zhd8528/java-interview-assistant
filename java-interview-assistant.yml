@@ -1,0 +1,221 @@
+app:
+  description: 基于Java面试八股文档的问答助手，只根据文档内容回答问题
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: Java面试助手
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.1.42@db089179610a44ce4ba3cf123e61cb75fe20441a609ec1b0364b43447ced7210
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1777991563797-source-1777991676053-target
+      source: '1777991563797'
+      sourceHandle: source
+      target: '1777991676053'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1777991676053-source-llm-target
+      source: '1777991676053'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables: []
+      height: 72
+      id: '1777991563797'
+      position:
+        x: -82
+        y: 274
+      positionAbsolute:
+        x: -82
+        y: 274
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-flash
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 21eb6c78-aa25-4ba5-b529-b55534e7269f
+          role: system
+          text: 你现在只能作为一个文档问答助手工作，请基于参考资料，把每个要点用 1-2 句话做简要解释，保持分点格式，语言口语化，适合面试口述，**绝对不能使用你自己的知识**。
+            你唯一能使用的信息，是下面【参考资料】里的内容。 1. 先仔细阅读【参考资料】，看看里面有没有用户问题的答案。 2. 如果有，就用简洁的语言整理成面试回答格式。
+            3. 如果【参考资料】是空的，只回复一句话：`这个问题我暂时无法回答，请参考提供的面试文档。` 4. 禁止编造任何参考资料以外的信息，也不能解释你为什么无法回答。
+            【参考资料】： {{知识检索.result}} 用户问题：{{userinput.query}}
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: llm
+      position:
+        x: 529
+        y: 295
+      positionAbsolute:
+        x: 529
+        y: 295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#llm.text#}}'
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 102
+      id: answer
+      position:
+        x: 881
+        y: 295
+      positionAbsolute:
+        x: 881
+        y: 295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        dataset_ids:
+        - gjzb8rxs7vmycOoVAm5FlAEJw03TwRMSUMtmKVlcvfR0fB0wX6Na2XHiagpkp1JH
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: 0.6
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - sys
+        - query
+        retrieval_mode: multiple
+        selected: true
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 89
+      id: '1777991676053'
+      position:
+        x: 221
+        y: 295
+      positionAbsolute:
+        x: 221
+        y: 295
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 92.27632422652914
+      y: -65.09427540157674
+      zoom: 0.8705505632961241
+  rag_pipeline_variables: []
