@@ -1,0 +1,622 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 06-电商助教
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.1.12@680ddc73a743030de0cb8f6dafe33519683f61cd8dee6abdb531bd6eb0ab74a6
+    version: null
+kind: app
+version: 0.5.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1770623132162-source-1770623242614-target
+      source: '1770623132162'
+      sourceHandle: source
+      target: '1770623242614'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1770623242614-source-1770623862790-target
+      source: '1770623242614'
+      sourceHandle: source
+      target: '1770623862790'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1770623862790-true-1770623695371-target
+      source: '1770623862790'
+      sourceHandle: 'true'
+      target: '1770623695371'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1770623862790-01118113-7039-4f69-be16-3b4cebe536f1-1770623695371-target
+      source: '1770623862790'
+      sourceHandle: 01118113-7039-4f69-be16-3b4cebe536f1
+      target: '1770623695371'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1770623862790-28cf448b-d32c-4a3c-bfed-d506ae172304-1770623695371-target
+      source: '1770623862790'
+      sourceHandle: 28cf448b-d32c-4a3c-bfed-d506ae172304
+      target: '1770623695371'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1770623862790-false-1770624166497-target
+      source: '1770623862790'
+      sourceHandle: 'false'
+      target: '1770624166497'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1770624166497-source-1770624422347-target
+      source: '1770624166497'
+      sourceHandle: source
+      target: '1770624422347'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1770624422347-true-1770624465915-target
+      source: '1770624422347'
+      sourceHandle: 'true'
+      target: '1770624465915'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1770624422347-false-1770624481399-target
+      source: '1770624422347'
+      sourceHandle: 'false'
+      target: '1770624481399'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1770624465915-source-1770624207197-target
+      source: '1770624465915'
+      sourceHandle: source
+      target: '1770624207197'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1770624481399-source-1770624633457-target
+      source: '1770624481399'
+      sourceHandle: source
+      target: '1770624633457'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: query
+          max_length: 256
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: query
+      height: 109
+      id: '1770623132162'
+      position:
+        x: 186
+        y: 279
+      positionAbsolute:
+        x: 186
+        y: 279
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "\nimport random\n\ndef main(query:str)->dict:\n    \"\"\"\n    基于固定短语匹配的跨境电商问答处理器\n\
+          \    \n    Args:\n        query: 用户输入的问题\n        \n    Returns:\n     \
+          \   Dict: 包含回复类型、回复内容等信息的字典\n    \"\"\"\n    # 去除首尾空格\n    query = query.strip()\n\
+          \n    # 打招呼相关的固定短语\n    greeting_phrases = {\n        # 基本问候\n        \"\
+          你好\", \"您好\", \"hi\", \"hello\", \"嗨\", \"哈喽\", \"哈罗\",\n        \"早上好\"\
+          , \"下午好\", \"晚上好\", \"上午好\", \"中午好\", \"晚安\",\n        \"早\", \"午安\", \"\
+          good morning\", \"good afternoon\", \"good evening\",\n        # 询问身份\n\
+          \        \"你是谁\", \"你是什么\", \"你叫什么\", \"你的名字\", \"介绍一下自己\", \n        \"\
+          自我介绍\", \"你是什么东西\", \"你是哪个\", \"你是啥\",\n        # 询问状态\n        \"你好吗\"\
+          , \"怎么样\", \"还好吗\", \"你还好吗\", \"最近怎么样\",\n        \"你在吗\", \"在不在\", \"还在吗\"\
+          , \"在线吗\", \"你在线吗\",\n        # 询问能力\n        \"你能干什么\", \"你会做什么\", \"你能做什么\"\
+          , \"你的功能\", \n        \"你有什么用\", \"你的作用\", \"你的职责\", \"你的用途\",\n       \
+          \ \"你能帮我什么\", \"你可以做什么\", \"你会什么\", \"你懂什么\",\n        \"能力介绍\", \"功能介绍\"\
+          , \"你的能力\", \"你有什么功能\",\n        # 开始对话\n        \"开始\", \"开始咨询\", \"开始对话\"\
+          , \"开始聊天\", \"我想咨询\",\n        \"我有问题\", \"我想问问题\", \"我想了解\", \"咨询一下\",\n\
+          \        # 测试类\n        \"测试\", \"试试\", \"试一试\", \"test\", \"testing\",\
+          \ \"试试看\",\n        \"测试一下\", \"看看\", \"检查一下\"\n    }\n    \n     # 固定回复\n\
+          \    greeting_response = \"你好，很高兴为您服务！我是您的跨境电商学习小助手，专业为您答疑解惑。\"\n    # 礼貌用语\n\
+          \    thank_phrases = {\n        \"谢谢\", \"感谢\", \"多谢\", \"谢了\", \"thanks\"\
+          , \"thank you\", \n        \"thx\", \"3q\", \"3x\", \"谢谢你\", \"感谢你\", \"\
+          多谢了\",\n        \"非常感谢\", \"十分感谢\", \"万分感谢\", \"太感谢了\"\n    }\n    \n  \
+          \  goodbye_phrases = {\n        \"再见\", \"拜拜\", \"bye\",\"byebye\",\"goodbye\"\
+          , \"88\", \"走了\", \"告辞\",\n        \"先走了\", \"下次见\", \"回头见\", \"有空再聊\",\
+          \ \"改天聊\",\n        \"see you\", \"拜\", \"溜了\", \"闪了\", \"slip away\"\n\
+          \    }\n    \n        \n    polite_responses = {\n        \"thank\": [\n\
+          \            \"不用客气，随时为您服务！\", \n            \"很高兴能帮助到您！\", \n         \
+          \   \"这是我应该做的，有问题随时找我哦！\",\n            \"客气了，有什么问题尽管问！\",\n           \
+          \ \"不客气，祝您跨境电商生意兴隆！\"\n        ],\n        \"goodbye\": [\n            \"\
+          再见！期待下次为您服务！\", \n            \"祝您生活愉快，有问题随时来找我！\", \n            \"再见！祝您跨境电商生意兴隆！\"\
+          ,\n            \"拜拜！有问题随时回来咨询！\",\n            \"再见！祝您学习愉快！\"\n        ]\n\
+          \    }\n    # 人工服务相关短语\n    human_service_phrases = {\n        # 直接要求人工服务\n\
+          \        \"人工服务\", \"人工客服\", \"人工坐席\", \"人工咨询\", \"人工帮助\",\n        \"人工支持\"\
+          , \"人工答疑\", \"人工解答\", \"人工回复\", \"人工对话\",\n        # 转接相关\n        \"转人工\"\
+          , \"找人工\", \"要人工\", \"转接人工\", \"转接客服\",\n        \"切换人工\", \"接入人工\", \"\
+          联系人工\",\"答疑入口\",\n        # 真人服务\n        \"真人服务\", \"真人客服\", \"真人咨询\",\
+          \ \"真人对话\", \"真人帮助\",\n        \"活人\", \"真人\", \"人类\", \"人工\", \"真的人\",\n\
+          \        # 客服相关\n        \"客服\", \"在线客服\", \"联系客服\", \"找客服\", \"客服电话\",\n\
+          \        \"客服微信\", \"客服qq\", \"官方客服\",\n        # 老师/导师\n        \"联系老师\"\
+          , \"找老师\", \"咨询老师\", \"请教老师\", \"老师帮忙\",\n        \"专业老师\", \"课程老师\", \"\
+          指导老师\",\n        # 专业服务\n        \"专人服务\", \"专人客服\", \"专业咨询\", \"专业服务\"\
+          , \"专家咨询\",\n        \"顾问咨询\", \"一对一服务\", \"专属服务\",\n        # 投诉和问题\n \
+          \       \"投诉\", \"举报\", \"反馈问题\", \"意见反馈\", \"服务投诉\",\n        \"质量问题\"\
+          , \"服务问题\", \"系统问题\",\n        # 售后相关\n        \"退款\", \"退货\", \"售后\", \"\
+          售后服务\", \"退换货\", \"申请退款\",\n        \"退费\", \"取消订单\", \"订单问题\",\n      \
+          \  # 不满意\n        \"不满意\", \"有问题\", \"出问题\", \"不行\", \"太差了\", \"服务差\",\n\
+          \        \"回答不对\", \"答非所问\", \"听不懂\", \"不准确\"\n    }\n\n\n    \n    human_service_response\
+          \ = \"同学，点击 https://www.123.com 可进入人工答疑\"\n    \n    def normalize_text(text:\
+          \ str) -> str:\n        \"\"\"标准化文本：去除标点符号，转换为小写\"\"\"\n        import re\n\
+          \        # 保留中文、英文、数字，去除标点符号和空格\n        cleaned = re.sub(r'[^\\w\\u4e00-\\\
+          u9fff]', '', text.lower().strip())\n        return cleaned\n    \n    def\
+          \ exact_match_check(query_text: str, phrase_set) -> bool:\n        \"\"\"\
+          精确匹配检查\"\"\"\n        normalized_query = normalize_text(query_text)\n  \
+          \      \n        for phrase in phrase_set:\n            normalized_phrase\
+          \ = normalize_text(phrase)\n            if normalized_phrase == normalized_query:\n\
+          \                return True\n        return False\n    \n    def contains_match_check(query_text:\
+          \ str, phrase_set) -> bool:\n        \"\"\"包含匹配检查（用于短查询中包含关键短语的情况）\"\"\"\
+          \n        normalized_query = normalize_text(query_text)\n        \n    \
+          \    # 只有当查询很短时才使用包含匹配（避免误匹配）\n        if len(normalized_query) <= 10:\n\
+          \            for phrase in phrase_set:\n                normalized_phrase\
+          \ = normalize_text(phrase)\n                if normalized_phrase in normalized_query\
+          \ or normalized_query in normalized_phrase:\n                    return\
+          \ True\n        return False\n    \n    # 处理输入\n    query = query.strip()\n\
+          \    if not query:\n        return {\n            \"type\": \"error\",\n\
+          \            \"response\": \"请输入您的问题。\",\n            \"need_rag\": False,\n\
+          \            \"original_query\": query\n        }\n    \n    print(f\"处理查询:\
+          \ '{query}'\")\n    print(f\"标准化后: '{normalize_text(query)}'\")\n    \n\
+          \    # 1. 检查感谢类礼貌用语（精确匹配）\n    if exact_match_check(query, thank_phrases):\n\
+          \        return {\n            \"type\": \"greeting\",\n            \"response\"\
+          : random.choice(polite_responses[\"thank\"]),\n            \"need_rag\"\
+          : False,\n            \"original_query\": query\n        }\n    \n    #\
+          \ 2. 检查告别类礼貌用语（精确匹配）\n    if exact_match_check(query, goodbye_phrases):\n\
+          \        return {\n            \"type\": \"greeting\", \n            \"\
+          response\": random.choice(polite_responses[\"goodbye\"]),\n            \"\
+          need_rag\": False,\n            \"original_query\": query\n        }\n \
+          \   \n    # 3. 检查打招呼（精确匹配 + 短语包含匹配）\n    if exact_match_check(query, greeting_phrases)\
+          \ or contains_match_check(query, greeting_phrases):\n        return {\n\
+          \            \"type\": \"greeting\",\n            \"response\": greeting_response,\n\
+          \            \"need_rag\": False,\n            \"original_query\": query\n\
+          \        }\n    \n    # 4. 检查人工服务请求（精确匹配 + 短语包含匹配）\n    if exact_match_check(query,\
+          \ human_service_phrases) or contains_match_check(query, human_service_phrases):\n\
+          \        return {\n            \"type\": \"human_service\",\n          \
+          \  \"response\": human_service_response,\n            \"need_rag\": False,\n\
+          \            \"original_query\": query\n        }\n    \n    # 5. 其他情况需要RAG检索\n\
+          \    return {\n        \"type\": \"rag_needed\",\n        \"response\":\
+          \ \"\",\n        \"need_rag\": True,\n        \"original_query\": query\n\
+          \    }"
+        code_language: python3
+        desc: 判断用户的输入是否是打招呼用语或者是咨询跨境电商专业的问题
+        outputs:
+          need_rag:
+            children: null
+            type: boolean
+          original_query:
+            children: null
+            type: string
+          response:
+            children: null
+            type: string
+          type:
+            children: null
+            type: string
+        selected: false
+        title: 意图识别
+        type: code
+        variables:
+        - value_selector:
+          - '1770623132162'
+          - query
+          value_type: string
+          variable: query
+      height: 96
+      id: '1770623242614'
+      position:
+        x: 527.0056838989258
+        y: 300
+      positionAbsolute:
+        x: 527.0056838989258
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - '1770623242614'
+          - response
+          value_type: string
+          variable: response
+        selected: false
+        title: 输出
+        type: end
+      height: 88
+      id: '1770623695371'
+      position:
+        x: 1358.5113677978516
+        y: 294
+      positionAbsolute:
+        x: 1358.5113677978516
+        y: 294
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: df509aac-299b-4dcc-946d-44d037aee16a
+            value: greeting
+            varType: string
+            variable_selector:
+            - '1770623242614'
+            - type
+          id: 'true'
+          logical_operator: and
+        - case_id: 01118113-7039-4f69-be16-3b4cebe536f1
+          conditions:
+          - comparison_operator: is
+            id: 719fdb0d-27aa-4a77-8f56-33ef6d3aa940
+            value: human_service
+            varType: string
+            variable_selector:
+            - '1770623242614'
+            - type
+          id: 01118113-7039-4f69-be16-3b4cebe536f1
+          logical_operator: and
+        - case_id: 28cf448b-d32c-4a3c-bfed-d506ae172304
+          conditions:
+          - comparison_operator: is
+            id: fb3730a2-ca62-41c5-912e-aeb553bc3086
+            value: error
+            varType: string
+            variable_selector:
+            - '1770623242614'
+            - type
+          id: 28cf448b-d32c-4a3c-bfed-d506ae172304
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 220
+      id: '1770623862790'
+      position:
+        x: 865.0170516967773
+        y: 300
+      positionAbsolute:
+        x: 865.0170516967773
+        y: 300
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        dataset_ids:
+        - m/MgtTy/R4FladJPNd/gDBDmICUnBwRWahgPRvfRyTioy6VobrI+d5oEv8bH7P3p
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: gte-rerank
+            provider: langgenius/tongyi/tongyi
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1770623132162'
+        - query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 90
+      id: '1770624166497'
+      position:
+        x: 1360.0170516967773
+        y: 456.5056838989258
+      positionAbsolute:
+        x: 1360.0170516967773
+        y: 456.5056838989258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - '1770624465915'
+          - text
+          value_type: string
+          variable: result
+        selected: false
+        title: RAG输出
+        type: end
+      height: 88
+      id: '1770624207197'
+      position:
+        x: 2373.974452527975
+        y: 411.70215035624904
+      positionAbsolute:
+        x: 2373.974452527975
+        y: 411.70215035624904
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: 228c63d7-f3b2-4630-b4a1-baf74d224f33
+            value: ''
+            varType: array[object]
+            variable_selector:
+            - '1770624166497'
+            - result
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 条件分支 2
+        type: if-else
+      height: 124
+      id: '1770624422347'
+      position:
+        x: 1735.174248361734
+        y: 469.8668131028776
+      positionAbsolute:
+        x: 1735.174248361734
+        y: 469.8668131028776
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1770624166497'
+          - result
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3-max
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 71d09366-e4ff-4121-af8e-d6566767af02
+          role: system
+          text: " # 角色\n 你是一位专业且高效的跨境电商答疑小助手，精通跨境电商领域的各类知识，能够依据相关信息准确回答用户关于跨境电商的问题。\n\
+             ​\n ## 重要参数\n - 上下文内容：{{#context#}}\n ## 技能\n ### 技能 1: 基于上下文解答问题\n 1.\
+            \ 严格依据提供的上下文内容进行回答，不添加上下文中未出现的信息。\n 2. 回答需精准、简洁、有条理，重点突出，逻辑严密，避免歧义，采用清晰的格式呈现内容，将复杂概念以通俗易懂的方式表达。\n\
+             ​\n ### 技能 2: 答案优化\n 1. 若问题检索出来的上下文答案比较简单，需进行优化，但不能改变原来上下文中涉及到的答案核心内容。\n\
+             2. 示例：\n     - 问题： 是不是不能在一个页面里面同时操作设置两个素材（A图案对应白T，B图案对应黑T）只能选一个通用于白黑T的图案？\n\
+                 - 检索上下文答案： 是的\n     - 优化后给出答案：  是的，不能在一个页面里面同时操作设置两个素材（A图案对应白T，B图案对应黑T），只能选一个通用于白黑T的图案。\n\
+             ​\n ### 技能 3: 上下文不足信息内容补齐\n 1. 若问题经过数据库检索，给出的上下文信息非常少或没有，需结合自身专业知识回答。\n\
+             2. 示例：\n     - 问题：如果我的产品标题中即有泰文和英文，算重复吗？\n     - 上下文的信息：请不要在标题中出现叠词\n\
+                 - 回答：本地知识库中未提供关于产品既有泰文和英文是否算重复的相关内容，结合专业知识，目前没有明确固定标准判定这种情况一定算重复，具体要根据不同平台规则和实际情况判断。以上信息仅供参考。\n\
+             ​\n ### 技能 4 敏感词过滤\n 1. 当遇到不符合安全规范或者敏感的词汇时，优先利用插件check进行敏感词搜索，然后去除\n\
+             ​\n ## 限制:\n - 仅回答与跨境电商相关的问题，拒绝处理与跨境电商无关的话题。\n - 优先以检索的知识库内容为答案，除非内容不全在进行优化或者补全\n\
+             - 回答内容必须符合上述技能要求的格式和规范。\n - 若回答基于知识库已有信息，需遵循相应说明规范；若知识库中没有相关内容，应按技能 3\
+            \ 要求回答用户 。 \nRAG大模型用户Prompt\n 用户输入问题：{x}query\n6.1 直接输出\n\n作用：直接输出经过RAG检索后大模型的结果\n\
+            7.大模型闲聊回答\n\n作用：\n 接受用户的问题，直接基于大模型本身回答结果\n实现方式：添加《大模型》节点\n闲聊大模型：系统Prompt\n\
+             # 角色\n 你是一位专业且亲切的跨境电商答疑小助手，不仅拥有深厚的跨境电商专业知识，还具备广泛的通用知识储备。你能够根据用户需求，灵活切换角色，既能为用户解答跨境电商领域的复杂专业问题，也能与用户展开轻松愉快的日常闲聊。\n\
+             ​\n ## 技能\n ### 技能 1: 精准解答跨境电商问题\n 1. 当用户提出跨境电商相关问题时，充分运用自身专业知识，结合丰富且贴合实际的案例，为用户提供准确、全面且详细的解答。\n\
+             2. 针对复杂的跨境电商概念，运用通俗易懂、生动形象的语言进行深入浅出的解释说明，确保用户能够轻松理解。\n 3. 在回答的结尾处明确注明“以上答案仅供参考”。\n\
+             ​\n ### 技能 2: 耐心回应非跨境电商问题\n 1. 当用户提及非跨境电商问题时，例如简单的数学运算“1 + 1 等于几”等，运用已有的知识储备，耐心、准确地对用户进行回答。\n\
+             2. 在回答此类问题的结尾同样注明“以上答案仅供参考”。\n ​\n ### 技能 3: 合理引导不明确问题\n 1. 当用户输入的问题含义不明确时，不直接给出知识回答，而是友好地输出“我还在努力理解您的问题，请您详细描述后再来询问吧，这样我能更好地为您解答。”\n\
+             ​\n ## 限制:\n - 交流内容主要围绕跨境电商学习以及其他非电商知识相关范畴，对于与这两类内容无关的话题，需礼貌地拒绝回答，并告知用户“抱歉，我只能回答与跨境电商学习和其他非电商知识相关的问题哦”。\n\
+             - 所输出的内容必须严格符合上述回答要求，保证格式规范、条理清晰、逻辑连贯。 \n - 回答的答案中禁止提及：需要进行知识库检索\nuser\n\
+             用户问题：{x}query\n7.1 直接输出\n"
+        - role: user
+          text: 用户问题：{{#1770623132162.query#}}
+        selected: false
+        title: LLM（RAG）
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1770624465915'
+      position:
+        x: 2027.232591327072
+        y: 403.81828324499196
+      positionAbsolute:
+        x: 2027.232591327072
+        y: 403.81828324499196
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3-max
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 09da569c-1b95-4244-897c-7aace31d94d6
+          role: system
+          text: " # 角色\n 你是一位专业且亲切的跨境电商答疑小助手，不仅拥有深厚的跨境电商专业知识，还具备广泛的通用知识储备。你能够根据用户需求，灵活切换角色，既能为用户解答跨境电商领域的复杂专业问题，也能与用户展开轻松愉快的日常闲聊。\n\
+             ​\n ## 技能\n ### 技能 1: 精准解答跨境电商问题\n 1. 当用户提出跨境电商相关问题时，充分运用自身专业知识，结合丰富且贴合实际的案例，为用户提供准确、全面且详细的解答。\n\
+             2. 针对复杂的跨境电商概念，运用通俗易懂、生动形象的语言进行深入浅出的解释说明，确保用户能够轻松理解。\n 3. 在回答的结尾处明确注明“以上答案仅供参考”。\n\
+             ​\n ### 技能 2: 耐心回应非跨境电商问题\n 1. 当用户提及非跨境电商问题时，例如简单的数学运算“1 + 1 等于几”等，运用已有的知识储备，耐心、准确地对用户进行回答。\n\
+             2. 在回答此类问题的结尾同样注明“以上答案仅供参考”。\n ​\n ### 技能 3: 合理引导不明确问题\n 1. 当用户输入的问题含义不明确时，不直接给出知识回答，而是友好地输出“我还在努力理解您的问题，请您详细描述后再来询问吧，这样我能更好地为您解答。”\n\
+             ​\n ## 限制:\n - 交流内容主要围绕跨境电商学习以及其他非电商知识相关范畴，对于与这两类内容无关的话题，需礼貌地拒绝回答，并告知用户“抱歉，我只能回答与跨境电商学习和其他非电商知识相关的问题哦”。\n\
+             - 所输出的内容必须严格符合上述回答要求，保证格式规范、条理清晰、逻辑连贯。 \n - 回答的答案中禁止提及：需要进行知识库检索\nuser\n\
+             用户问题：{x}query\n7.1 直接输出\n"
+        - id: da61eb60-d391-41b6-8f1a-b89f90a12573
+          role: user
+          text: 用户问题：{{#1770623132162.query#}}
+        selected: false
+        title: LLM (闲聊)
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1770624481399'
+      position:
+        x: 2029.296607885131
+        y: 593.7078065864131
+      positionAbsolute:
+        x: 2029.296607885131
+        y: 593.7078065864131
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - '1770624481399'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: 闲聊输出
+        type: end
+      height: 88
+      id: '1770624633457'
+      position:
+        x: 2373.974452527975
+        y: 608.8775957260697
+      positionAbsolute:
+        x: 2373.974452527975
+        y: 608.8775957260697
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -123.17822076535344
+      y: 36.33566996752148
+      zoom: 0.6784350914095679
+  rag_pipeline_variables: []
